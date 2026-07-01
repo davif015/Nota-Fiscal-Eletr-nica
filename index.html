@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartNFe - Gerador Automático</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container-formulario" id="tela-formulario">
+    <h2><i class="fa-solid fa-file-invoice"></i> Dados para Emissão da NFe</h2>
+    <p>Preencha os dados abaixo para gerar a nota fiscal automaticamente.</p>
+    
+    <form id="meuFormulario">
+      <div class="form-secao">
+        <h3><i class="fa-solid fa-user"></i> Informações do Destinatário (Cliente)</h3>
+        <div class="form-grid">
+          <div class="form-grupo"><label>Nome / Razão Social</label><input type="text" id="f-nome" value="Mercado Central Ltda" required></div>
+          <div class="form-grupo"><label>CPF / CNPJ</label><input type="text" id="f-cnpj" value="12.345.678/0001-99" required></div>
+          <div class="form-grupo"><label>Endereço</label><input type="text" id="f-endereco" value="Rua das Flores, 150 - Centro" required></div>
+          <div class="form-grupo"><label>Telefone / E-mail</label><input type="text" id="f-contato" value="(71) 98888-1122" required></div>
+        </div>
+      </div>
+
+      <div class="form-secao">
+        <h3><i class="fa-solid fa-box"></i> Dados do Produto / Serviço</h3>
+        <div class="form-grid">
+          <div class="form-grupo" style="grid-column: span 2;"><label>Nome do Produto</label><input type="text" id="f-produto" value="Serviço de Desenvolvimento Web" required></div>
+          <div class="form-grupo"><label>Quantidade</label><input type="number" id="f-qtd" value="1" min="1" step="1" required></div>
+          <div class="form-grupo"><label>Valor Unitário (R$)</label><input type="number" id="f-valor" value="2500.00" step="0.01" required></div>
+        </div>
+      </div>
+
+      <div class="form-secao">
+        <h3><i class="fa-solid fa-truck-ramp-box"></i> Valores Adicionais</h3>
+        <div class="form-grid">
+          <div class="form-grupo"><label>Frete (R$)</label><input type="number" id="f-frete" value="0.00" step="0.01"></div>
+          <div class="form-grupo"><label>Desconto (R$)</label><input type="number" id="f-desconto" value="0.00" step="0.01"></div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-gerar">Gerar Nota Fiscal Eletrônica <i class="fa-solid fa-arrow-right"></i></button>
+    </form>
+  </div>
+
+
+  <div class="nota" id="tela-nota" style="display: none;">
+
+    <div class="topo">
+      <div class="logo">Sua Logo Aqui</div>
+      <div class="titulo">
+        <h1>NOTA FISCAL<br>ELETRÔNICA</h1>
+        <i class="fa-solid fa-file-invoice-dollar icone"></i>
+      </div>
+    </div>
+
+    <div class="linhaCards">
+      <div class="card">
+        <div class="tituloCard"><i class="fa-solid fa-building"></i> Emitente</div>
+        <div class="conteudo">
+          <div class="campo-grupo"><label>Razão Social</label><input type="text" value="Sua Empresa LTDA"></div>
+          <div class="campo-grupo"><label>CNPJ</label><input type="text" value="00.000.000/0000-00"></div>
+          <div class="campo-grupo"><label>Inscrição Estadual</label><input type="text" value="000.000.000"></div>
+          <div class="campo-grupo"><label>Endereço completo</label><input type="text" value="Rua Comercial, nº 100 - Centro"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="tituloCard"><i class="fa-solid fa-receipt"></i> Dados da Nota</div>
+        <div class="conteudo gridNota">
+          <div class="campo-grupo"><label>Número</label><input type="text" id="n-numero" value="000.001"></div>
+          <div class="campo-grupo"><label>Série</label><input type="text" value="001"></div>
+          <div class="campo-grupo"><label>Data Emissão</label><input type="text" id="n-data"></div>
+          <div class="campo-grupo"><label>Hora Emissão</label><input type="text" id="n-hora"></div>
+          <div class="campo-grupo chave-container"><label>Chave de Acesso</label><input type="text" value="3526 0712 3456 7890 0190 5500 1000 0001 2310 1234 5678" style="font-size: 11px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tituloCard"><i class="fa-solid fa-user"></i> Destinatário</div>
+      <div class="conteudo destGrid">
+        <div class="campo-grupo"><label>Nome / Razão Social</label><input type="text" id="n-nome"></div>
+        <div class="campo-grupo"><label>CPF / CNPJ</label><input type="text" id="n-cnpj"></div>
+        <div class="campo-grupo"><label>Endereço</label><input type="text" id="n-endereco"></div>
+        <div class="campo-grupo"><label>Telefone / E-mail</label><input type="text" id="n-contato"></div>
+      </div>
+    </div>
+
+    <div class="secao-produtos-totais">
+      <div class="card">
+        <div class="tituloCard"><i class="fa-solid fa-cart-shopping"></i> Dados dos Produtos / Serviços</div>
+        <div class="conteudo" style="padding: 10px;">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 40px;">Item</th>
+                <th>Descrição</th>
+                <th class="col-qtd" style="text-align: center;">Qtd</th>
+                <th class="col-val">Valor Unit.</th>
+                <th class="col-tot">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><input type="text" id="n-produto-nome"></td>
+                <td><input type="number" id="n-produto-qtd" style="text-align: center;"></td>
+                <td><input type="number" id="n-produto-valor" step="0.01"></td>
+                <td><span id="n-produto-total" class="total-item-txt">R$ 0,00</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="tituloCard"><i class="fa-solid fa-dollar-sign"></i> Totais</div>
+        <div class="conteudo">
+          <div class="campo-grupo">
+            <label>Valor dos Produtos</label>
+            <span id="subtotal-produtos" style="font-weight: 600; display:block; padding: 4px 0;">R$ 0,00</span>
+          </div>
+          <div class="campo-grupo"><label>Desconto (R$)</label><input type="number" id="n-desconto" step="0.01"></div>
+          <div class="campo-grupo"><label>Frete (R$)</label><input type="number" id="n-frete" step="0.01"></div>
+          <div class="valor-total-box">
+            <span>VALOR TOTAL:</span>
+            <span id="valor-final-nota">R$ 0,00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao-impostos-adicionais">
+      <div class="card">
+        <div class="tituloCard"><i class="fa-solid fa-percent"></i> Impostos (Simulação Automatizada)</div>
+        <div class="conteudo grid-impostos">
+          <div class="bloco-imposto">
+            <h4>ICMS (18%)</h4>
+            <label>Base Cálc.</label><input type="text" id="imp-icms-base">
+            <label>Valor ICMS</label><input type="text" id="imp-icms-val">
+          </div>
+          <div class="bloco-imposto">
+            <h4>IPI (0%)</h4>
+            <label>Base Cálc.</label><input type="text" id="imp-ipi-base">
+            <label>Valor IPI</label><input type="text" id="imp-ipi-val">
+          </div>
+          <div class="bloco-imposto"><h4>PIS (1.65%)</h4><label>Valor PIS</label><input type="text" id="imp-pis-val"></div>
+          <div class="bloco-imposto"><h4>COFINS (7.6%)</h4><label>Valor COFINS</label><input type="text" id="imp-cofins-val"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="tituloCard"><i class="fa-solid fa-circle-info"></i> Informações Adicionais</div>
+        <div class="conteudo" style="display: flex; flex-direction: column; height: calc(100% - 43px);">
+          <textarea>Empresa optante pelo Simples Nacional fictícia. Mercadoria/Serviço simulado para apresentação do projeto.</textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="rodape">
+      <div class="assinatura-box"><div class="campo-grupo"><label>Data de Recebimento</label><input type="text" value="____/____/______" style="text-align: center;"></div></div>
+      <div class="assinatura-box"><div class="assinatura-linha">Assinatura do Destinatário</div></div>
+    </div>
+
+    <button onclick="window.location.reload();" class="btn-voltar" style="margin-top: 20px; padding: 10px 20px; background: #666; color: white; border: none; border-radius: 8px; cursor: pointer;"><i class="fa-solid fa-arrow-left"></i> Emitir Outra Nota</button>
+  </div>
+
+  <script>
+    document.getElementById('meuFormulario').addEventListener('submit', function(evento) {
+      evento.preventDefault();
+
+      let nomeCliente = document.getElementById('f-nome').value;
+      let cnpjCliente = document.getElementById('f-cnpj').value;
+      let enderecoCliente = document.getElementById('f-endereco').value;
+      let contatoCliente = document.getElementById('f-contato').value;
+
+      let nomeProduto = document.getElementById('f-produto').value;
+      let qtdProduto = parseInt(document.getElementById('f-qtd').value) || 0;
+      let valorUnitario = parseFloat(document.getElementById('f-valor').value) || 0;
+
+      let valorFrete = parseFloat(document.getElementById('f-frete').value) || 0;
+      let valorDesconto = parseFloat(document.getElementById('f-desconto').value) || 0;
+
+      let totalProduto = qtdProduto * valorUnitario;
+      let subtotalGeral = totalProduto; 
+      let valorTotalNota = (subtotalGeral + valorFrete) - valorDesconto;
+
+      document.getElementById('n-nome').value = nomeCliente;
+      document.getElementById('n-cnpj').value = cnpjCliente;
+      document.getElementById('n-endereco').value = enderecoCliente;
+      document.getElementById('n-contato').value = contatoCliente;
+
+      document.getElementById('n-produto-nome').value = nomeProduto;
+      document.getElementById('n-produto-qtd').value = qtdProduto;
+      document.getElementById('n-produto-valor').value = valorUnitario.toFixed(2);
+      document.getElementById('n-produto-total').innerText = "R$ " + totalProduto.toFixed(2).replace('.', ',');
+
+      document.getElementById('subtotal-produtos').innerText = "R$ " + subtotalGeral.toFixed(2).replace('.', ',');
+      document.getElementById('n-frete').value = valorFrete.toFixed(2);
+      document.getElementById('n-desconto').value = valorDesconto.toFixed(2);
+      document.getElementById('valor-final-nota').innerText = "R$ " + valorTotalNota.toFixed(2).replace('.', ',');
+
+      let baseTexto = "R$ " + subtotalGeral.toFixed(2).replace('.', ',');
+      
+      let valIcms = subtotalGeral * 0.18;
+      let valIpi = subtotalGeral * 0.00;
+      let valPis = subtotalGeral * 0.0165;
+      let valCofins = subtotalGeral * 0.076;
+
+      document.getElementById('imp-icms-base').value = baseTexto;
+      document.getElementById('imp-icms-val').value = "R$ " + valIcms.toFixed(2).replace('.', ',');
+      
+      document.getElementById('imp-ipi-base').value = baseTexto;
+      document.getElementById('imp-ipi-val').value = "R$ " + valIpi.toFixed(2).replace('.', ',');
+      
+      document.getElementById('imp-pis-val').value = "R$ " + valPis.toFixed(2).replace('.', ',');
+      document.getElementById('imp-cofins-val').value = "R$ " + valCofins.toFixed(2).replace('.', ',');
+
+      let agora = new Date();
+      document.getElementById('n-data').value = agora.toLocaleDateString('pt-BR');
+      document.getElementById('n-hora').value = agora.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+
+      document.getElementById('tela-formulario').style.display = 'none';
+      document.getElementById('tela-nota').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
