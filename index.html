@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+<button type="button" id="btn-dark-mode" class="no-print" style="position: absolute; top: 20px; right: 20px; padding: 10px 15px; background: #64748B; color: white; border: none; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 14px; z-index: 9999;">
+  <i class="fa-solid fa-moon"></i> Modo Escuro
+</button>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,27 +30,42 @@
       <div class="form-secao">
         <h3><i class="fa-solid fa-user"></i> Informações do Destinatário (Cliente)</h3>
         <div class="form-grid">
-          <div class="form-grupo"><label>Nome / Razão Social</label><input type="text" id="f-nome" value="Mercado Central Ltda" required></div>
-          <div class="form-grupo"><label>CPF / CNPJ</label><input type="text" id="f-cnpj" value="12.345.678/0001-99" required></div>
-          <div class="form-grupo"><label>Endereço</label><input type="text" id="f-endereco" value="Rua das Flores, 150 - Centro" required></div>
-          <div class="form-grupo"><label>Telefone / E-mail</label><input type="text" id="f-contato" value="(71) 98888-1122" required></div>
+          <div class="form-grupo"><label>Nome / Razão Social</label><input type="text" id="f-nome" value="" placeholder=" Digite seu Nome" required></div>
+          <div class="form-grupo"><label>CPF / CNPJ</label><input type="text" id="f-cnpj" placeholder="00.000.000/0000-00 ou 000.000.000-00" required></div>
+          <div class="form-grupo"><label>Endereço</label><input type="text" id="f-endereco" value="" placeholder="Digite seu Endereço" required></div>
+          <div class="form-grupo"><label>Telefone</label><input type="text" id="f-contato" placeholder="(00) 00000-0000" required></div>
         </div>
       </div>
 
       <div class="form-secao">
         <h3><i class="fa-solid fa-box"></i> Dados do Produto / Serviço</h3>
-        <div class="form-grid">
-          <div class="form-grupo" style="grid-column: span 2;"><label>Nome do Produto</label><input type="text" id="f-produto" value="Serviço de Desenvolvimento Web" required></div>
-          <div class="form-grupo"><label>Quantidade</label><input type="number" id="f-qtd" value="1" min="1" step="1" required></div>
-          <div class="form-grupo"><label>Valor Unitário (R$)</label><input type="number" id="f-valor" value="2500.00" step="0.01" required></div>
+        
+        <div id="lista-produtos-formulario">
+          <div class="produto-item-form form-grid">
+            <div class="form-grupo" style="grid-column: span 2;">
+              <label>Nome do Produto</label>
+              <input type="text" class="f-produto" value="" placeholder="Produto" required>
+            </div>
+            <div class="form-grupo">
+              <label>Quantidade</label>
+              <input type="number" class="f-qtd" value="1" min="1" step="1" required>
+            </div>
+            <div class="form-grupo">
+              <label>Valor Unitário (R$)</label>
+              <input type="number" class="f-valor" value="" placeholder="00,00" step="0.01" required>
+            </div>
+            <div style="width: 30px;"></div> 
+          </div>
         </div>
+
+        <button type="button" id="btn-add-produto" class="btn-secundario"><i class="fa-solid fa-plus"></i> Adicionar Outro Produto</button>
       </div>
 
       <div class="form-secao">
         <h3><i class="fa-solid fa-truck-ramp-box"></i> Valores Adicionais</h3>
         <div class="form-grid">
-          <div class="form-grupo"><label>Frete (R$)</label><input type="number" id="f-frete" value="0.00" step="0.01"></div>
-          <div class="form-grupo"><label>Desconto (R$)</label><input type="number" id="f-desconto" value="0.00" step="0.01"></div>
+          <div class="form-grupo"><label>Frete (R$)</label><input type="number" id="f-frete" value="" placeholder="00,00"step="0.01"></div>
+          <div class="form-grupo"><label>Desconto (R$)</label><input type="number" id="f-desconto" value="" placeholder="00,00"step="0.01"></div>
         </div>
       </div>
 
@@ -48,11 +73,26 @@
     </form>
   </div>
 
+  <div class="container-formulario no-print" id="secao-historico" style="margin-top: 20px;">
+    <h3><i class="fa-solid fa-history"></i> Histórico de Notas Emitidas</h3>
+    <div style="overflow-x: auto; margin-top: 15px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+        <thead>
+          <tr style="background: #0B2545; color: white;">
+            <th style="padding: 10px; text-align: left;">Data/Hora</th>
+            <th style="padding: 10px; text-align: left;">Cliente</th>
+            <th style="padding: 10px; text-align: left;">Valor Total</th>
+            <th style="padding: 10px; text-align: left;">Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-historico"></tbody>
+      </table>
+    </div>
+  </div>
 
   <div class="nota" id="tela-nota" style="display: none;">
-
     <div class="topo">
-      <div class="logo">Sua Logo Aqui</div>
+      <div class="logo">Sua Logo Here</div>
       <div class="titulo">
         <h1>NOTA FISCAL<br>ELETRÔNICA</h1>
         <i class="fa-solid fa-file-invoice-dollar icone"></i>
@@ -88,14 +128,14 @@
         <div class="campo-grupo"><label>Nome / Razão Social</label><input type="text" id="n-nome"></div>
         <div class="campo-grupo"><label>CPF / CNPJ</label><input type="text" id="n-cnpj"></div>
         <div class="campo-grupo"><label>Endereço</label><input type="text" id="n-endereco"></div>
-        <div class="campo-grupo"><label>Telefone / E-mail</label><input type="text" id="n-contato"></div>
+        <div class="campo-grupo"><label>Telefone</label><input type="text" id="n-contato"></div>
       </div>
     </div>
 
     <div class="secao-produtos-totais">
       <div class="card">
         <div class="tituloCard"><i class="fa-solid fa-cart-shopping"></i> Dados dos Produtos / Serviços</div>
-        <div class="conteudo" style="padding: 10px;">
+        <div class="conteudo">
           <table>
             <thead>
               <tr>
@@ -106,15 +146,7 @@
                 <th class="col-tot">Total</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td><input type="text" id="n-produto-nome"></td>
-                <td><input type="number" id="n-produto-qtd" style="text-align: center;"></td>
-                <td><input type="number" id="n-produto-valor" step="0.01"></td>
-                <td><span id="n-produto-total" class="total-item-txt">R$ 0,00</span></td>
-              </tr>
-            </tbody>
+            <tbody id="corpo-tabela-produtos"></tbody>
           </table>
         </div>
       </div>
@@ -126,8 +158,14 @@
             <label>Valor dos Produtos</label>
             <span id="subtotal-produtos" style="font-weight: 600; display:block; padding: 4px 0;">R$ 0,00</span>
           </div>
-          <div class="campo-grupo"><label>Desconto (R$)</label><input type="number" id="n-desconto" step="0.01"></div>
-          <div class="campo-grupo"><label>Frete (R$)</label><input type="number" id="n-frete" step="0.01"></div>
+          <div class="campo-grupo">
+            <label>Desconto Adicional</label>
+            <span id="n-desconto-print" style="display:block; padding: 4px 0;">R$ 0,00</span>
+          </div>
+          <div class="campo-grupo">
+            <label>Frete</label>
+            <span id="n-frete-print" style="display:block; padding: 4px 0;">R$ 0,00</span>
+          </div>
           <div class="valor-total-box">
             <span>VALOR TOTAL:</span>
             <span id="valor-final-nota">R$ 0,00</span>
@@ -155,10 +193,14 @@
         </div>
       </div>
 
-      <div class="card">
-        <div class="tituloCard"><i class="fa-solid fa-circle-info"></i> Informações Adicionais</div>
-        <div class="conteudo" style="display: flex; flex-direction: column; height: calc(100% - 43px);">
+      <div class="card container-adicionais-qrcode">
+        <div class="tituloCard"><i class="fa-solid fa-circle-info"></i> Informações / Validação</div>
+        <div class="conteudo secao-info-qr">
           <textarea>Empresa optante pelo Simples Nacional fictícia. Mercadoria/Serviço simulado para apresentação do projeto.</textarea>
+          <div class="qrcode-box">
+            <span class="qr-titulo">Consulta via Pix/Autenticidade</span>
+            <img id="n-qrcode" src="" alt="QR Code da Nota">
+          </div>
         </div>
       </div>
     </div>
@@ -168,67 +210,12 @@
       <div class="assinatura-box"><div class="assinatura-linha">Assinatura do Destinatário</div></div>
     </div>
 
-    <button onclick="window.location.reload();" class="btn-voltar" style="margin-top: 20px; padding: 10px 20px; background: #666; color: white; border: none; border-radius: 8px; cursor: pointer;"><i class="fa-solid fa-arrow-left"></i> Emitir Outra Nota</button>
+    <div class="botoes-acoes no-print" style="margin-top: 20px; display: flex; gap: 15px;">
+      <button type="button" id="btn-voltar-form" class="btn-voltar-nota"><i class="fa-solid fa-arrow-left"></i> Voltar ao Formulário</button>
+      <button onclick="window.print();" class="btn-imprimir-nota"><i class="fa-solid fa-print"></i> Imprimir / Salvar em PDF</button>
+    </div>
   </div>
 
-  <script>
-    document.getElementById('meuFormulario').addEventListener('submit', function(evento) {
-      evento.preventDefault();
-
-      let nomeCliente = document.getElementById('f-nome').value;
-      let cnpjCliente = document.getElementById('f-cnpj').value;
-      let enderecoCliente = document.getElementById('f-endereco').value;
-      let contatoCliente = document.getElementById('f-contato').value;
-
-      let nomeProduto = document.getElementById('f-produto').value;
-      let qtdProduto = parseInt(document.getElementById('f-qtd').value) || 0;
-      let valorUnitario = parseFloat(document.getElementById('f-valor').value) || 0;
-
-      let valorFrete = parseFloat(document.getElementById('f-frete').value) || 0;
-      let valorDesconto = parseFloat(document.getElementById('f-desconto').value) || 0;
-
-      let totalProduto = qtdProduto * valorUnitario;
-      let subtotalGeral = totalProduto; 
-      let valorTotalNota = (subtotalGeral + valorFrete) - valorDesconto;
-
-      document.getElementById('n-nome').value = nomeCliente;
-      document.getElementById('n-cnpj').value = cnpjCliente;
-      document.getElementById('n-endereco').value = enderecoCliente;
-      document.getElementById('n-contato').value = contatoCliente;
-
-      document.getElementById('n-produto-nome').value = nomeProduto;
-      document.getElementById('n-produto-qtd').value = qtdProduto;
-      document.getElementById('n-produto-valor').value = valorUnitario.toFixed(2);
-      document.getElementById('n-produto-total').innerText = "R$ " + totalProduto.toFixed(2).replace('.', ',');
-
-      document.getElementById('subtotal-produtos').innerText = "R$ " + subtotalGeral.toFixed(2).replace('.', ',');
-      document.getElementById('n-frete').value = valorFrete.toFixed(2);
-      document.getElementById('n-desconto').value = valorDesconto.toFixed(2);
-      document.getElementById('valor-final-nota').innerText = "R$ " + valorTotalNota.toFixed(2).replace('.', ',');
-
-      let baseTexto = "R$ " + subtotalGeral.toFixed(2).replace('.', ',');
-      
-      let valIcms = subtotalGeral * 0.18;
-      let valIpi = subtotalGeral * 0.00;
-      let valPis = subtotalGeral * 0.0165;
-      let valCofins = subtotalGeral * 0.076;
-
-      document.getElementById('imp-icms-base').value = baseTexto;
-      document.getElementById('imp-icms-val').value = "R$ " + valIcms.toFixed(2).replace('.', ',');
-      
-      document.getElementById('imp-ipi-base').value = baseTexto;
-      document.getElementById('imp-ipi-val').value = "R$ " + valIpi.toFixed(2).replace('.', ',');
-      
-      document.getElementById('imp-pis-val').value = "R$ " + valPis.toFixed(2).replace('.', ',');
-      document.getElementById('imp-cofins-val').value = "R$ " + valCofins.toFixed(2).replace('.', ',');
-
-      let agora = new Date();
-      document.getElementById('n-data').value = agora.toLocaleDateString('pt-BR');
-      document.getElementById('n-hora').value = agora.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
-
-      document.getElementById('tela-formulario').style.display = 'none';
-      document.getElementById('tela-nota').style.display = 'block';
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
