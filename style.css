@@ -10,7 +10,9 @@ body {
   padding: 40px;
 }
 
-/* ESTILO DO NOVO FORMULÁRIO DE ENTRADA */
+/* ==========================================================================
+   ESTILO DO FORMULÁRIO DE ENTRADA
+   ========================================================================== */
 .container-formulario {
   max-width: 700px;
   margin: auto;
@@ -57,6 +59,16 @@ body {
   gap: 15px;
 }
 
+#lista-produtos-formulario .produto-item-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto; 
+  gap: 15px;
+  margin-bottom: 20px;
+  border-left: 3px solid #123B6D;
+  padding-left: 10px;
+  align-items: flex-end;
+}
+
 .form-grupo {
   display: flex;
   flex-direction: column;
@@ -70,7 +82,7 @@ body {
   text-transform: uppercase;
 }
 
-.form-grid input {
+.container-formulario input {
   padding: 10px;
   border: 1px solid #CBD5E1;
   border-radius: 8px;
@@ -80,12 +92,13 @@ body {
   transition: all 0.2s;
 }
 
-.form-grid input:focus {
+.container-formulario input:focus {
   border-color: #123B6D;
   background: white;
   box-shadow: 0 0 0 3px rgba(18, 59, 109, 0.1);
 }
 
+/* Botões do Formulário */
 .btn-gerar {
   width: 100%;
   padding: 15px;
@@ -103,12 +116,36 @@ body {
   gap: 10px;
 }
 
-.btn-gerar:hover {
-  background: #123B6D;
+.btn-gerar:hover { background: #123B6D; }
+
+.btn-secundario {
+  background: #E2E8F0;
+  color: #475569;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 5px;
+  text-transform: uppercase;
 }
+.btn-secundario:hover { background: #CBD5E1; }
 
+.btn-remover-prod {
+  background: #fee2e2;
+  color: #ef4444;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-remover-prod:hover { background: #fca5a5; }
 
-/* DESIGN INTERNO DA NOTA FISCAL */
+/* ==========================================================================
+   DESIGN INTERNO DA NOTA FISCAL
+   ========================================================================== */
 .nota {
   max-width: 1000px;
   margin: auto;
@@ -130,9 +167,7 @@ body {
   outline: none;
 }
 
-.nota input:focus {
-  border-bottom: 1px solid #123B6D;
-}
+.nota input:focus { border-bottom: 1px solid #123B6D; }
 
 .topo {
   display: flex;
@@ -171,10 +206,7 @@ body {
   text-align: right;
 }
 
-.icone {
-  font-size: 70px;
-  color: #123B6D;
-}
+.icone { font-size: 70px; color: #123B6D; }
 
 .linhaCards {
   display: grid;
@@ -191,9 +223,7 @@ body {
   margin-bottom: 22px;
 }
 
-.linhaCards .card {
-  margin-bottom: 0;
-}
+.linhaCards .card { margin-bottom: 0; }
 
 .tituloCard {
   background: #0B2545;
@@ -207,14 +237,8 @@ body {
   text-transform: uppercase;
 }
 
-.conteudo {
-  padding: 20px;
-  font-size: 14px;
-}
-
-.campo-grupo {
-  margin-bottom: 12px;
-}
+.conteudo { padding: 20px; font-size: 14px; }
+.campo-grupo { margin-bottom: 12px; }
 
 .campo-grupo label {
   font-weight: 600;
@@ -243,34 +267,19 @@ body {
   display: grid;
   grid-template-columns: 1.3fr 0.7fr;
   gap: 22px;
+  align-items: start;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.secao-produtos-totais .card:first-child .conteudo {
+  max-height: 320px;
+  overflow-y: auto;
 }
 
-th {
-  background: #0B2545;
-  color: white;
-  padding: 10px;
-  font-size: 12px;
-  text-align: left;
-}
-
-td {
-  border-bottom: 1px solid #E5E7EB;
-  padding: 8px;
-}
-
-.col-qtd, .col-val, .col-tot {
-  width: 90px;
-}
-
-.total-item-txt {
-  font-weight: 600;
-  color: #333;
-}
+table { width: 100%; border-collapse: collapse; }
+th { background: #0B2545; color: white; padding: 10px; font-size: 12px; text-align: left; }
+td { border-bottom: 1px solid #E5E7EB; padding: 8px; }
+.col-qtd, .col-val, .col-tot { width: 90px; }
+.total-item-txt { font-weight: 600; color: #333; }
 
 .valor-total-box {
   background: #F8FAFC;
@@ -302,18 +311,36 @@ td {
   padding-left: 10px;
 }
 
-.bloco-imposto h4 {
-  font-size: 13px;
-  color: #0B2545;
+.bloco-imposto h4 { font-size: 13px; color: #0B2545; margin-bottom: 5px; }
+
+/* Estilo do Card Dividido entre Textarea e QR Code */
+.secao-info-qr {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.secao-info-qr textarea {
+  flex: 1;
+  height: 110px;
+}
+.qrcode-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-left: 1px solid #E4E7EC;
+  padding-left: 15px;
+}
+.qr-titulo {
+  font-size: 9px;
+  font-weight: bold;
+  color: #64748B;
+  text-transform: uppercase;
   margin-bottom: 5px;
 }
-
-textarea {
-  height: 100px;
-  resize: none;
-  border: 1px dashed #D7DCE5;
-  padding: 8px;
-  border-radius: 8px;
+.qrcode-box img {
+  width: 90px;
+  height: 90px;
 }
 
 .rodape {
@@ -321,18 +348,133 @@ textarea {
   border-top: 2px solid #0B2545;
   padding-top: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 30px;
 }
 
-.assinatura-box {
-  text-align: center;
-}
-
+.assinatura-box { text-align: center; }
 .assinatura-linha {
   border-top: 1px solid #777;
   margin-top: 40px;
   padding-top: 5px;
   font-size: 12px;
   color: #555;
+}
+
+/* Estilo dos Botões de Ação Finais */
+.btn-voltar-nota {
+  padding: 12px 25px;
+  background: #64748B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.btn-imprimir-nota {
+  padding: 12px 25px;
+  background: #10B981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.btn-voltar-nota:hover { background: #475569; }
+.btn-imprimir-nota:hover { background: #059669; }
+
+/* ==========================================================================
+   REGRAS ESPECÍFICAS PARA IMPRESSÃO EM PDF
+   ========================================================================== */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+  .no-print, .botoes-acoes, #btn-dark-mode {
+    display: none !important; 
+  }
+  .nota {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ==========================================================================
+   ESTILOS PARA O DARK MODE
+   ========================================================================= */
+body, #tela-formulario, input, textarea, label, h1, h2, h3, h4, th, td {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+body.dark-theme {
+  background-color: #0F172A !important; 
+  color: #F8FAFC !important;
+}
+
+body.dark-theme #tela-formulario, 
+body.dark-theme #secao-historico {
+  background: #1E293B !important; 
+  color: #F8FAFC !important;
+  border-color: #334155 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-theme #tela-formulario h2, 
+body.dark-theme #tela-formulario h3, 
+body.dark-theme #secao-historico h3,
+body.dark-theme .form-grupo label {
+  color: #F1F5F9 !important; 
+}
+
+body.dark-theme #secao-historico strong {
+  color: #38BDF8 !important; 
+}
+
+body.dark-theme .container-formulario input {
+  background-color: #334155 !important; 
+  color: #FFFFFF !important;
+  border-color: #475569 !important;
+}
+
+body.dark-theme .container-formulario input::placeholder {
+  color: #94A3B8 !important;
+}
+
+body.dark-theme #secao-historico th {
+  background-color: #334155 !important;
+  color: #F8FAFC !important;
+}
+
+body.dark-theme #secao-historico td {
+  border-color: #334155 !important;
+  color: #E2E8F0 !important;
+}
+
+/* 🛡️ PRESERVAÇÃO DA NOTA FISCAL ORIGINAL EM BRANCO */
+body.dark-theme #tela-nota,
+body.dark-theme #tela-nota .card {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+body.dark-theme #tela-nota input,
+body.dark-theme #tela-nota textarea {
+  background-color: transparent !important;
+  color: #000000 !important;
+  border-color: #D7DCE5 !important;
+}
+
+body.dark-theme #tela-nota table,
+body.dark-theme #tela-nota td {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #E5E7EB !important;
+}
+
+body.dark-theme #tela-nota h1,
+body.dark-theme #tela-nota .icone {
+  color: #123B6D !important;
 }
