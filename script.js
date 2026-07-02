@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
           let pNome = item.querySelector('.f-produto');
           let pQtd = item.querySelector('.f-qtd');
           let pVal = item.querySelector('.f-valor');
-          if(pNome) pNome.value = "Serviço de Desenvolvimento Web";
+          if(pNome) pNome.value = "";
           if(pQtd) pQtd.value = "1";
           if(pVal) pVal.value = "2500.00";
         }
