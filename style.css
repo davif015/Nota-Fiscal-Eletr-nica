@@ -494,6 +494,17 @@ body.dark-theme #tela-nota .icone {
   .container-formulario input, .form-grid, .produto-item-form {
     width: 100% !important;
     max-width: 100% !important;
+    /* Força cada campo do produto a virar uma linha própria no celular, impedindo o vazamento */
+  #lista-produtos-formulario .produto-item-form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  #lista-produtos-formulario .produto-item-form .form-grupo {
+    width: 100% !important;
   }
 
   /* Transforma layouts de duas colunas em uma linha por bloco */
