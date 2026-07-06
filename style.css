@@ -501,6 +501,32 @@ body.dark-theme #tela-nota .icone {
     align-items: stretch !important;
     gap: 10px !important;
     width: 100% !important;
+  /* Força o navegador a calcular a largura descontando as bordas */
+  *, *:before, *:after {
+    box-sizing: border-box !important;
+  }
+
+  /* Reduz drasticamente o espaço interno para o formulário não espremer os inputs */
+  .container-formulario {
+    padding: 15px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Garante que nenhuma linha passe do limite do container */
+  .form-grid, .produto-item-form, .form-grupo {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Ajusta os inputs para usarem o espaço real disponível */
+  .container-formulario input {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   }
 
