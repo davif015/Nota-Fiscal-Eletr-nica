@@ -490,6 +490,10 @@ body.dark-theme #tela-nota .icone {
   .container-formulario, .nota {
     padding: 20px;
     border-radius: 14px;
+ /* Ajuste cirúrgico para os inputs não escaparem da tela no celular */
+  .container-formulario input, .form-grid, .produto-item-form {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   /* Transforma layouts de duas colunas em uma linha por bloco */
