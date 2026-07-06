@@ -480,9 +480,9 @@ body.dark-theme #tela-nota .icone {
 }
 
 /* ==========================================================================
-   MELHORIA DE RESPONSIVIDADE PARA APARELHOS CELULARES (BLINDADO)
+   ESTABILIZAÇÃO DE RESPONSIVIDADE (VERSÃO DO PRINT)
    ========================================================================== */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 576px) {
   body {
     padding: 10px;
   }
@@ -490,65 +490,14 @@ body.dark-theme #tela-nota .icone {
   .container-formulario, .nota {
     padding: 20px;
     border-radius: 14px;
- /* Ajuste cirúrgico para os inputs não escaparem da tela no celular */
-  .container-formulario input, .form-grid, .produto-item-form {
-    width: 100% !important;
-    max-width: 100% !important;
-    /* Força cada campo do produto a virar uma linha própria no celular, impedindo o vazamento */
-  #lista-produtos-formulario .produto-item-form {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 10px !important;
-    width: 100% !important;
-  /* Força o navegador a calcular a largura descontando as bordas */
-  *, *:before, *:after {
-    box-sizing: border-box !important;
   }
 
-  /* Reduz drasticamente o espaço interno para o formulário não espremer os inputs */
-  .container-formulario {
-    padding: 15px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-  }
-
-  /* Garante que nenhuma linha passe do limite do container */
-  .form-grid, .produto-item-form, .form-grupo {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  /* Ajusta os inputs para usarem o espaço real disponível */
-  .container-formulario input {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  }
-
-  #lista-produtos-formulario .produto-item-form .form-grupo {
-    width: 100% !important;
-  }
-
-  /* Transforma layouts de duas colunas em uma linha por bloco */
   .form-grid, .linhaCards, .secao-produtos-totais, 
   .secao-impostos-adicionais, .gridNota, .destGrid, .grid-impostos, .rodape {
     grid-template-columns: 1fr !important;
     gap: 15px;
   }
 
-  /* Reorganiza o gerador de produtos na ficha para não achatar */
-  #lista-produtos-formulario .produto-item-form {
-    grid-template-columns: 1fr !important;
-    gap: 10px;
-    align-items: stretch;
-  }
-
-  /* Faz a tabela do preview respirar criando rolagem se ultrapassar a tela */
   .secao-produtos-totais .card:first-child .conteudo {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -558,7 +507,6 @@ body.dark-theme #tela-nota .icone {
     min-width: 400px;
   }
 
-  /* Ajusta cabeçalho da Nota */
   .topo {
     flex-direction: column;
     text-align: center;
@@ -571,7 +519,6 @@ body.dark-theme #tela-nota .icone {
     line-height: 30px;
   }
 
-  /* Área do QR Code centralizada abaixo do campo de texto */
   .secao-info-qr {
     flex-direction: column;
     align-items: center;
